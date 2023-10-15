@@ -25,8 +25,8 @@ const Cards = ({ users, onHandleChange }) => {
             </Content>
 
             <Button
-              isFollowing={isFollowing}
               onClick={() => onHandleChange(id)}
+              $isFollowing={isFollowing}
               type="button"
             >
               {isFollowing ? 'Following' : 'Follow'}

@@ -1,6 +1,7 @@
 import axios from 'axios';
+const { REACT_APP_API_KEY } = process.env;
 
-axios.defaults.baseURL = 'https://64b5adb3f3dbab5a95c7953c.mockapi.io';
+axios.defaults.baseURL = `https://${REACT_APP_API_KEY}.mockapi.io`;
 
 export const getData = async endpoint => {
   try {

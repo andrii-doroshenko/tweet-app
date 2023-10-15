@@ -108,7 +108,8 @@ export const Content = styled.div`
 
 export const Button = styled.button`
   min-width: 196px;
-  background-color: ${props => (props.isFollowing ? '#5CD3A8' : '#ebd8ff')};
+  background-color: ${({ $isFollowing }) =>
+    $isFollowing ? '#5CD3A8' : '#ebd8ff'};
   color: #373737;
   padding: 14px 28px;
   border: none;
@@ -121,6 +122,7 @@ export const Button = styled.button`
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${props => (props.isFollowing ? '#ebd8ff' : '#5CD3A8')};
+    background-color: ${({ $isFollowing }) =>
+      $isFollowing ? '#ebd8ff' : '#5CD3A8'};
   }
 `;
