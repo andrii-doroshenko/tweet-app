@@ -11,7 +11,7 @@ function App() {
   // });
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
-  const [recordsPerPage] = useState(5);
+  const [noMoreResults, setNoMoreResults] = useState(false);
 
   const handleClick = async id => {
     const updatedUsers = users.map(user =>
@@ -39,7 +39,10 @@ function App() {
       try {
         const { data } = await getData('/users', page);
 
-        if (data.length === 0) console.error('No more results');
+        if (data.length === 0) {
+          setNoMoreResults(true);
+          console.error('No more results');
+        }
 
         setUsers(prevUsers => [...prevUsers, ...data]);
       } catch (error) {
@@ -62,7 +65,10 @@ function App() {
     <main>
       <Container>
         <Cards users={users} onHandleChange={handleClick} />
-        <Button onClick={handleLoadMoreImages}>Load more</Button>
+        {!noMoreResults && (
+          <Button onClick={handleLoadMoreImages}>Load more</Button>
+        )}
+        {noMoreResults && <p>No more results</p>}
       </Container>
     </main>
   );
