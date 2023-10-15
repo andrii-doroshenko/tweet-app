@@ -11,9 +11,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
-      - name: Format files with Prettier
-        run: npm run format
-
       - name: Install, lint, build 🔧
         run: |
           npm install
