@@ -5,11 +5,7 @@ import { getData, updateData } from 'services/mockDB';
 import Cards from './cards/Card';
 
 function App() {
-  const [users, setUsers] = useState(() => {
-    const storedUsers = localStorage.getItem('users');
-    return storedUsers ? JSON.parse(storedUsers) : [];
-  });
-  // const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [noMoreResults, setNoMoreResults] = useState(false);
 
@@ -51,11 +47,6 @@ function App() {
     };
     fetchUsers();
   }, [page]);
-
-  useEffect(() => {
-    const jsonUsers = JSON.stringify(users);
-    localStorage.setItem('users', jsonUsers);
-  }, [users]);
 
   const handleLoadMoreImages = () => {
     setPage(prevPage => prevPage + 1);
