@@ -18,7 +18,13 @@ const Cards = ({ users, onHandleChange }) => {
           <StyledLogoIcon />
           <StyledPictureIcon />
           <Container>
-            <Avatar src={avatar} width="80px" height="80px" alt="user-logo" />
+            <Avatar
+              src={avatar ? avatar : ''}
+              width="80px"
+              height="80px"
+              alt="user-logo"
+            />
+
             <Content>
               <p>{tweets} tweets</p>
               <p>{formatFollowers(followers)} followers</p>

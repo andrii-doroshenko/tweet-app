@@ -3,7 +3,7 @@ import { ReactComponent as PictureIcon } from './img/picture.svg';
 import { ReactComponent as LogoIcon } from './img/logo.svg';
 
 export const List = styled.ul`
-  margin: 15px auto;
+  margin: 30px auto;
   width: 380px;
 
   @media screen and (min-width: 768px) {
@@ -13,8 +13,8 @@ export const List = styled.ul`
     gap: 15px;
   }
 
-  @media screen and (min-width: 1200px) {
-    width: 1200px;
+  @media screen and (min-width: 1170px) {
+    width: 1170px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -96,6 +96,7 @@ export const Avatar = styled.img`
   height: 80px;
   border-radius: 50%;
   border: 8px solid #ebd8ff;
+  background: #471ca9;
 `;
 
 export const Content = styled.div`

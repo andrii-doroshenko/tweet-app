@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from './App.styled';
+import Button from './loadMoreBtn/LoadMoreBtn';
 import { getData, updateData } from 'services/mockDB';
 import Cards from './cards/Card';
 
@@ -9,6 +10,8 @@ function App() {
   //   return storedUsers ? JSON.parse(storedUsers) : [];
   // });
   const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [recordsPerPage] = useState(5);
 
   const handleClick = async id => {
     const updatedUsers = users.map(user =>
@@ -34,27 +37,32 @@ function App() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const { data } = await getData('/users');
+        const { data } = await getData('/users', page);
 
-        if (data.length === 0) console.error('nothing to catch');
+        if (data.length === 0) console.error('No more results');
 
-        setUsers(data);
+        setUsers(prevUsers => [...prevUsers, ...data]);
       } catch (error) {
         console.error(error.message);
       }
     };
     fetchUsers();
-  }, []);
+  }, [page]);
 
   // useEffect(() => {
   //   const jsonUsers = JSON.stringify(users);
   //   localStorage.setItem('users', jsonUsers);
   // }, [users]);
 
+  const handleLoadMoreImages = () => {
+    setPage(prevPage => prevPage + 1);
+  };
+
   return (
     <main>
       <Container>
         <Cards users={users} onHandleChange={handleClick} />
+        <Button onClick={handleLoadMoreImages}>Load more</Button>
       </Container>
     </main>
   );
