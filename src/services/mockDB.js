@@ -11,3 +11,18 @@ export const getData = async endpoint => {
     throw error;
   }
 };
+
+export const updateData = async (endpoint, updatedData) => {
+  try {
+    const response = await axios.put(endpoint, updatedData, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error(error.message);
+    throw error;
+  }
+};
