@@ -1,4 +1,3 @@
-import { formatFollowers } from 'helpers/formatFollowers';
 import {
   List,
   Item,
@@ -27,7 +26,7 @@ const Cards = ({ users, onHandleChange }) => {
 
             <Content>
               <p>{tweets} tweets</p>
-              <p>{formatFollowers(followers)} followers</p>
+              <p>{followers.toLocaleString('en-EN')} followers</p>
             </Content>
 
             <Button
