@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from './App.styled';
 import Button from './loadMoreBtn/LoadMoreBtn';
-import { getData, updateData } from 'services/mockDB';
 import Cards from './cards/Card';
+import { getData, updateData } from 'services/mockDB';
 
 function App() {
   const [users, setUsers] = useState([]);
