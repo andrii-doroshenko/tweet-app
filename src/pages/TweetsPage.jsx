@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import Button from 'components/loadMoreBtn/LoadMoreBtn';
 import Cards from 'components/cards/Card';
 import { getData, updateData } from 'services/mockDB';
 import { Container } from 'components/App.styled';
 import { Loader } from 'components/Loader/Loader';
+import BackLink from 'components/BackLink/BackLink';
 
 export default function TweetsPage() {
   const [users, setUsers] = useState([]);
@@ -11,15 +13,15 @@ export default function TweetsPage() {
   const [noMoreResults, setNoMoreResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const location = useLocation();
+  const backLinkHref = useRef(location.state?.from ?? '/');
+
   useEffect(() => {
     setIsLoading(true);
     const fetchUsers = async () => {
       try {
         const { data } = await getData('/users', page);
-        // console.log(data.length);
-        //         if (data.length === 0) {
-        //           setNoMoreResults(true);
-        //         }
+
         setNoMoreResults(data.length < 3);
 
         setUsers(prevUsers => [...prevUsers, ...data]);
@@ -57,18 +59,17 @@ export default function TweetsPage() {
   const handleLoadMoreImages = () => {
     setPage(prevPage => prevPage + 1);
   };
-
+  
   return (
-    <main>
-      <Container>
-        <Cards users={users} onHandleChange={handleClick} />
-        {isLoading && <Loader />}
-        {!noMoreResults && (
-          <Button isLoading={isLoading} onClick={handleLoadMoreImages}>
-            Load more
-          </Button>
-        )}
-      </Container>
-    </main>
+    <Container>
+      <BackLink to={backLinkHref.current}>Back</BackLink>
+      <Cards users={users} onHandleChange={handleClick} />
+      {isLoading && <Loader />}
+      {!noMoreResults && (
+        <Button isLoading={isLoading} onClick={handleLoadMoreImages}>
+          Load more
+        </Button>
+      )}
+    </Container>
   );
 }

@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const LoadMoreBtn = styled.button`
+  margin: 0 auto;
+  display: block;
   min-width: 196px;
   background-color: #ebd8ff;
   color: #373737;
@@ -14,7 +16,8 @@ export const LoadMoreBtn = styled.button`
   box-shadow: 0px 3.5px 3.5px 0px rgba(0, 0, 0, 0.25);
   transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #5CD3A8;
+  &:hover,
+  &:focus {
+    background-color: #5cd3a8;
   }
 `;

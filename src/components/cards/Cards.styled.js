@@ -3,7 +3,7 @@ import { ReactComponent as PictureIcon } from './img/picture.svg';
 import { ReactComponent as LogoIcon } from './img/logo.svg';
 
 export const List = styled.ul`
-  margin: 30px auto;
+  margin: 0 auto 30px auto;
   width: 380px;
 
   @media screen and (min-width: 768px) {
@@ -122,8 +122,9 @@ export const Button = styled.button`
   box-shadow: 0px 3.5px 3.5px 0px rgba(0, 0, 0, 0.25);
   transition: background-color 0.3s;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ $isFollowing }) =>
-      $isFollowing ? '#ebd8ff' : '#5CD3A8'};
+      $isFollowing ? '#D4CF6D' : '#5CD3A8'};
   }
 `;
