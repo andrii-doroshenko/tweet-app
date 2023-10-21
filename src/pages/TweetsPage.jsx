@@ -59,7 +59,7 @@ export default function TweetsPage() {
   const handleLoadMoreImages = () => {
     setPage(prevPage => prevPage + 1);
   };
-  
+
   return (
     <Container>
       <BackLink to={backLinkHref.current}>Back</BackLink>

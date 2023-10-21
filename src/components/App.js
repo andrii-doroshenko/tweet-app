@@ -1,4 +1,4 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
 import {
   createRoutesFromElements,
@@ -22,5 +22,9 @@ const router = createBrowserRouter(
 );
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={'Loading...'}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
