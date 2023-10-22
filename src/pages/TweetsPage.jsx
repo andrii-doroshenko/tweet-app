@@ -6,12 +6,22 @@ import { getData, updateData } from 'services/mockDB';
 import { Container } from 'components/App.styled';
 import { Loader } from 'components/Loader/Loader';
 import BackLink from 'components/BackLink/BackLink';
+import DropdownMenu from 'components/DropdownMenu/DropdownMenu';
+import styled from 'styled-components';
+
+const PreHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+`;
 
 export default function TweetsPage() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [noMoreResults, setNoMoreResults] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [filter, setFilter] = useState('');
 
   const location = useLocation();
   const backLinkHref = useRef(location.state?.from ?? '/');
@@ -20,7 +30,7 @@ export default function TweetsPage() {
     setIsLoading(true);
     const fetchUsers = async () => {
       try {
-        const { data } = await getData('/users', page);
+        const { data } = await getData(`/users?filter=${filter}`, page);
 
         setNoMoreResults(data.length < 3);
 
@@ -33,7 +43,7 @@ export default function TweetsPage() {
     };
 
     fetchUsers();
-  }, [page]);
+  }, [page, filter]);
 
   const handleClick = async id => {
     const updatedUsers = users.map(user =>
@@ -60,9 +70,18 @@ export default function TweetsPage() {
     setPage(prevPage => prevPage + 1);
   };
 
+  const handleFilterChange = selectedFilter => {
+    setPage(1);
+    setUsers([]);
+    setFilter(selectedFilter);
+  };
+
   return (
     <Container>
-      <BackLink to={backLinkHref.current}>Back</BackLink>
+      <PreHeader>
+        <BackLink to={backLinkHref.current}>Back</BackLink>
+        <DropdownMenu filter={filter} onFilterChange={handleFilterChange} />
+      </PreHeader>
       <Cards users={users} onHandleChange={handleClick} />
       {isLoading && <Loader />}
       {!noMoreResults && (

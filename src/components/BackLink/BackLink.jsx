@@ -4,7 +4,6 @@ import { BsArrowLeftCircleFill } from 'react-icons/bs';
 
 const StyledLink = styled(Link)`
   display: inline-flex;
-  margin-bottom: 10px;
   text-decoration: none;
   transition: color .3s;
 

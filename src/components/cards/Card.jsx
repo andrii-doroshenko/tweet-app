@@ -14,7 +14,7 @@ const Cards = ({ users, onHandleChange }) => {
     <List>
       {users.map(({ id, avatar, followers, tweets, isFollowing }) => (
         <Item key={id}>
-          <StyledLogoIcon />
+          <StyledLogoIcon/>
           <StyledPictureIcon />
           <Container>
             <Avatar

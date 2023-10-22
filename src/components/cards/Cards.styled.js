@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as PictureIcon } from './img/picture.svg';
-import { ReactComponent as LogoIcon } from './img/logo.svg';
+import logo from './img/logo-mini.png';
 
 export const List = styled.ul`
   margin: 0 auto 30px auto;
@@ -61,10 +61,15 @@ export const StyledPictureIcon = styled(PictureIcon)`
   }
 `;
 
-export const StyledLogoIcon = styled(LogoIcon)`
+export const StyledLogoIcon = styled.div`
   position: absolute;
   top: 20px;
   left: 20px;
+  width: 96px;
+  height: 26px;
+  background-image: url(${logo});
+  background-size: contain;
+  background-repeat: no-repeat;
 `;
 
 export const Container = styled.div`

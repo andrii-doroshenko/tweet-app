@@ -1,12 +1,13 @@
 import { lazy, Suspense } from 'react';
-import ErrorPage from 'pages/ErrorPage/ErrorPage';
 import {
   createRoutesFromElements,
   createBrowserRouter,
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import ErrorPage from 'pages/ErrorPage/ErrorPage';
 import Layout from './Layout/Layout';
+import { LazyLoader } from './Loader/Loader';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const TweetsPage = lazy(() => import('pages/TweetsPage'));
@@ -23,7 +24,7 @@ const router = createBrowserRouter(
 
 export default function App() {
   return (
-    <Suspense fallback={'Loading...'}>
+    <Suspense fallback={<LazyLoader />}>
       <RouterProvider router={router} />
     </Suspense>
   );

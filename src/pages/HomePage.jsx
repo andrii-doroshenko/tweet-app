@@ -15,7 +15,7 @@ const HomePage = () => {
         Components.It allows users to view and fetch tweets with pagination.
         Discover and follow your favorite tweets!
         <span>
-          <StyledLink to="/tweets">Go to Bloggers Page</StyledLink>
+          <StyledLink to="/tweets">Go to Tweets Page</StyledLink>
         </span>
       </p>
     </CenteredContainer>
